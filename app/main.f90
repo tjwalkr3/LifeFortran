@@ -1,6 +1,6 @@
 program main
-  use LifeFortran, only: say_hello
+  use TestBoard, only: test_print_board
   implicit none
 
-  call say_hello()
+  call test_print_board()
 end program main
