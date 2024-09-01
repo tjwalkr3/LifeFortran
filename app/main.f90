@@ -1,6 +1,7 @@
 program main
-  use TestBoard, only: test_print_board
+  !use Life, only: execute_game
   implicit none
 
-  call test_print_board()
+  print *, "Eventually call the game function from here"
+  print *, "Use fpm test to test the parts of the program"
 end program main
