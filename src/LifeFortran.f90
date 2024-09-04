@@ -30,8 +30,8 @@ contains
     integer, intent(in) :: column, row
     integer :: count = 0
     integer :: col_count
-    col_count = size(board, dim=2)
     integer :: row_count
+    col_count = size(board, dim=2)
     row_count = size(board, dim=1)
     
     ! check right
@@ -83,9 +83,9 @@ contains
     else if (count == 3) then
       board(column, row) = 1
     else if (count > 3) then
-      board(column row) = 0
+      board(column, row) = 0
     else if (count <= 4 .and. count >= 1 .and. board(column, row) == 1) then
       board(column, row) = 1
     end if
-  end subroutine get_proximity
+  end subroutine live_or_die
 end module Life
