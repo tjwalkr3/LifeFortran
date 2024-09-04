@@ -26,49 +26,51 @@ contains
   end function wrap_down
 
   subroutine live_or_die(board, column, row)
-    integer, intent(inout) :: board(:, )
+    integer, intent(inout) :: board(:, :)
     integer, intent(in) :: column, row
     integer :: count = 0
-    integer :: col_count = size(board, dim=2)
-    integer :: row_count = size(board, dim=1)
+    integer :: col_count
+    col_count = size(board, dim=2)
+    integer :: row_count
+    row_count = size(board, dim=1)
     
     ! check right
-    if (board(wrap_up(column, col_count), row) = 1) then
+    if (board(wrap_up(column, col_count), row) == 1) then
       count = count + 1
     end if
 
     ! check left
-    if (board(wrap_down(column, col_count), row) = 1) then
+    if (board(wrap_down(column, col_count), row) == 1) then
       count = count + 1
     end if
     
     ! check up
-    if (board(column, wrap_up(row, row_count)) = 1) then
+    if (board(column, wrap_up(row, row_count)) == 1) then
       count = count + 1
     end if
 
     ! check down
-    if (board(column, wrap_down(row, row_count)) = 1) then
+    if (board(column, wrap_down(row, row_count)) == 1) then
       count = count + 1
     end if
     
     ! check up right
-    if (board(wrap_up(column, col_count), wrap_up(row, row_count)) = 1) then
+    if (board(wrap_up(column, col_count), wrap_up(row, row_count)) == 1) then
       count = count + 1
     end if
     
     ! check up left
-    if (board(wrap_down(column, col_count), wrap_up(row, row_count)) = 1) then
+    if (board(wrap_down(column, col_count), wrap_up(row, row_count)) == 1) then
       count = count + 1
     end if
 
     ! check down right
-    if (board(wrap_up(column, col_count), wrap_down(row, row_count)) = 1) then
+    if (board(wrap_up(column, col_count), wrap_down(row, row_count)) == 1) then
       count = count + 1
     end if
     
     ! check down left
-    if (board(wrap_down(column, col_count), wrap_down(row, row_count)) = 1) then
+    if (board(wrap_down(column, col_count), wrap_down(row, row_count)) == 1) then
       count = count + 1
     end if
 
@@ -87,4 +89,3 @@ contains
     end if
   end subroutine get_proximity
 end module Life
-

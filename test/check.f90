@@ -1,10 +1,20 @@
 program check
-use Life, only: print_board
+use Life, only: print_board, live_or_die
 implicit none
 
   ! test the method for printing the board
-  integer, dimension(3, 3) :: board
-  board = reshape((/ 1, 2, 3, 4, 5, 6, 7, 8, 9 /), shape(board))
-  call print_board(board)
+  print *, "testing print_board"
+  integer, dimension(3, 3) :: board1
+  board1 = reshape((/ 1, 2, 3, 4, 5, 6, 7, 8, 9 /), shape(board1))
+  call print_board(board1)
+
+  ! test the method for killing cells
+  print *, "test 1 for live_or_die"
+  integer, dimension(3, 3) :: board2
+  board2 = reshape((/ 0, 0, 0, 1, 0, 1, 0, 0, 1 /), shape(board2))
+  call print_board(board2)
+  print *, "Running on middle cell"
+  call live_or_die(board2, 2, 2)
+  call print_board(board2)
   
 end program check
