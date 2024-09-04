@@ -26,7 +26,7 @@ implicit none
   call count_logic(board3)
   call print_board(board3)
 
-  ! test the method for killing cells in 5 board
+  ! test the method for adding cells in 5 board
   print *, "test 1 for live_or_die"
   board3 = reshape((/ 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 /), shape(board3))
   call print_board(board3)
