@@ -2,7 +2,7 @@ module Life
   implicit none
   private
 
-  public :: print_board, wrap_up, wrap_down, live_or_die, count_logic, loop
+  public :: print_board, wrap_up, wrap_down, live_or_die, count_logic, loop, run_game
 
 contains
 
@@ -109,8 +109,26 @@ contains
     do i=1, generations
      call count_logic(board)
      print *, "Running Generation: ",i 
+     call sleep(1)
      call print_board(board)
     end do
   end subroutine loop
+
+  subroutine run_game(rows, columns, generations)
+    integer, intent(in) :: columns , rows, generations
+    integer :: column, row
+    integer :: index
+    real :: rand_real
+    integer, dimension(columns, rows) :: gameboard
+    
+    do row = 1, size(gameboard, 2)
+      do column = 1, size(gameboard, 1)
+        call random_number(rand_real)
+        gameboard(row, column) = FLOOR(2 * rand_real)
+      end do
+    end do
+
+    call loop(gameboard, generations)
+  end subroutine run_game
 
 end module Life

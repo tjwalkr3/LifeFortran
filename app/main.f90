@@ -1,7 +1,9 @@
 program main
-  !use Life, only: execute_game
+  use Life, only: run_game
   implicit none
 
-  print *, "Eventually call the game function from here"
-  print *, "Use fpm test to test the parts of the program"
+  print *, "Press any key to run. "
+  read(*,*)
+
+  call run_game(10, 10, 10)
 end program main
