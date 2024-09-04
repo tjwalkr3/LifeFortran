@@ -1,5 +1,5 @@
 program check
-use Life, only: print_board, live_or_die
+use Life, only: print_board, count_logic
 implicit none
   integer, dimension(3, 3) :: board1
   integer, dimension(3, 3) :: board2
@@ -14,7 +14,7 @@ implicit none
   board2 = reshape((/ 0, 0, 0, 1, 0, 1, 0, 0, 1 /), shape(board2))
   call print_board(board2)
   print *, "Running on middle cell"
-  call live_or_die(board2, 2, 2)
+  call count_logic(board2)
   call print_board(board2)
   
 end program check
