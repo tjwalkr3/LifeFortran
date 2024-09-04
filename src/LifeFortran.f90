@@ -2,7 +2,7 @@ module Life
   implicit none
   private
 
-  public :: print_board, wrap_up, wrap_down, live_or_die, count_logic
+  public :: print_board, wrap_up, wrap_down, live_or_die, count_logic, loop
 
 contains
 
@@ -100,5 +100,17 @@ contains
     board = temp_board
 
   end subroutine count_logic
+ 
+  subroutine loop(board, generations)
+    integer, intent(inout) :: board(:, :)
+    integer :: generations
+    integer :: i
+
+    do i=1, generations
+     call count_logic(board)
+  print *, "Running Another Generation"
+     call print_board(board)
+    end do
+  end subroutine loop
 
 end module Life
