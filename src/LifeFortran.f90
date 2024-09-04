@@ -17,12 +17,20 @@ contains
 
   integer function wrap_up(index, count)
     integer, intent(in) :: index, count
-    wrap_up = mod((index + 1), count)
+    if (index == count) then
+      wrap_up = 1
+    else
+      wrap_up = index + 1
+    end if
   end function wrap_up
 
   integer function wrap_down(index, count)
     integer, intent(in) :: index, count
-    wrap_down = mod((index + count - 1), count)
+    if (index == 1) then
+      wrap_down = count
+    else
+      wrap_down = index - 1
+    end if
   end function wrap_down
 
   subroutine live_or_die(board, column, row)
@@ -34,7 +42,6 @@ contains
     col_count = size(board, dim=2)
     row_count = size(board, dim=1)
     
-    print *, wrap_up(column, col_count)
     ! check right
     if (board(wrap_up(column, col_count), row) == 1) then
       count = count + 1
