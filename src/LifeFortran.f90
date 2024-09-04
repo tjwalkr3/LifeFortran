@@ -33,12 +33,14 @@ contains
     end if
   end function wrap_down
 
-  subroutine live_or_die(board, column, row)
+  function live_or_die(board, column, row) result(count)
     integer, intent(inout) :: board(:, :)
     integer, intent(in) :: column, row
-    integer :: count = 0
+    integer :: count
+
     integer :: col_count
     integer :: row_count
+    count = 0
     col_count = size(board, dim=2)
     row_count = size(board, dim=1)
     
@@ -52,7 +54,7 @@ contains
       count = count + 1
     end if
     
-    ! check up
+    ! check up 
     if (board(column, wrap_up(row, row_count)) == 1) then
       count = count + 1
     end if
@@ -81,7 +83,12 @@ contains
     if (board(wrap_down(column, col_count), wrap_down(row, row_count)) == 1) then
       count = count + 1
     end if
+  end function live_or_die
 
+  subroutine count_logic(board)
+    integer, intent(inout) :: board(:, :)
+    integer :: col_count = size(board, dim=2)
+    integer :: row_count = size(board, dim=1)
     ! A live cell dies if it has fewer than two live neighbors.
     ! A live cell with two or three live neighbors lives on to the next generation.
     ! A live cell with more than three live neighbors dies. 
@@ -95,5 +102,5 @@ contains
     else if (count == 2 .and. board(column, row) == 1) then
       board(column, row) = 1
     end if
-  end subroutine live_or_die
+  end subroutine count_logic
 end module Life
