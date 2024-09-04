@@ -109,8 +109,8 @@ contains
     do i=1, generations
      call count_logic(board)
      print *, "Running Generation: ",i 
-     call sleep(1)
      call print_board(board)
+     call sleep(1)
     end do
   end subroutine loop
 
