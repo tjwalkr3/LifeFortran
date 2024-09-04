@@ -92,7 +92,7 @@ contains
       board(column, row) = 1
     else if (count > 3) then
       board(column, row) = 0
-    else if (count <= 4 .and. count >= 1 .and. board(column, row) == 1) then
+    else if (count == 2 .and. board(column, row) == 1) then
       board(column, row) = 1
     end if
   end subroutine live_or_die
