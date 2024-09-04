@@ -34,6 +34,7 @@ contains
     col_count = size(board, dim=2)
     row_count = size(board, dim=1)
     
+    print *, wrap_up(column, col_count)
     ! check right
     if (board(wrap_up(column, col_count), row) == 1) then
       count = count + 1
